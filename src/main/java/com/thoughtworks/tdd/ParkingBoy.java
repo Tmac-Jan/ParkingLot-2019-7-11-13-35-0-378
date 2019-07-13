@@ -14,7 +14,6 @@ import java.util.stream.IntStream;
  * @date: 2019/7/13 10:56
  */
 public class ParkingBoy {
-    //    private ParkingLot parkingLot;
     private List<ParkingLot> parkingLots;
     private final int INIT_PARKINGLOT_COUNT = 2;
 
@@ -72,4 +71,5 @@ public class ParkingBoy {
                 throw new Exception("Your ticket is unlawful!");
         }
     }
+
 }

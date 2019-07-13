@@ -124,11 +124,44 @@ class ParkingBoyTest {
     }
     @Test void should_park_car_in_paringLot_contains_more_capacityRate_firstLy_when_park_car()throws Exception{
         ParkingBoy parkingBoy = new SmartParkingBoy(2);
-        parkingBoy.park(new Car());
-        parkingBoy.park(new Car());
-        parkingBoy.park(new Car());
-        parkingBoy.park(new Car());
-        Assertions.assertEquals(parkingBoy.getParkingLots().get(0).getTicketCars().size()
-                ,parkingBoy.getParkingLots().get(1).getTicketCars().size());
+        int i=0;
+        while(i<4){
+            parkingBoy.park(new Car());
+            i++;
+        }
+        Assertions.assertEquals(2
+                ,parkingBoy.getParkingLots().get(0).getTicketCars().size());
+        Assertions.assertEquals(2
+                ,parkingBoy.getParkingLots().get(0).getTicketCars().size());
+    }
+    @Test void should_add_parkingBoy_into_paringLot_when_operator_is_manager()throws Exception{
+           ParkingManager parkingManager = new ParkingManager();
+           int i=0;
+           while(i<4){
+               parkingManager.addParkBoy(new ParkingBoy());
+               i++;
+           }
+        Assertions.assertEquals(4
+                ,parkingManager.getParkingBoyList().size());
+    }
+    @Test void should_park_car_by_paringBoy_specified_by_parkingManager_when_give_car()throws Exception{
+        ParkingManager parkingManager = new ParkingManager();
+        int i=0;
+        while(i<4){
+            parkingManager.addParkBoy(new ParkingBoy());
+            i++;
+        }
+        Car expectedCar = new Car();
+        Ticket ticket = parkingManager.getParkingBoyList().get(0).park(expectedCar);
+        Car actualCarBySameParingBoy = parkingManager.getParkingBoyList().get(0).fetch(ticket);
+        Assertions.assertEquals(expectedCar
+                ,actualCarBySameParingBoy);
+    }
+    @Test void  should_park_car_by_parkingManager_when_give_car()throws Exception{
+        ParkingManager parkingManager = new ParkingManager();
+        Car expectedCar = new Car();
+        Ticket ticket = parkingManager.park(expectedCar);
+        Car actualCar = parkingManager.fetch(ticket);
+        Assertions.assertEquals(expectedCar,actualCar);
     }
 }
