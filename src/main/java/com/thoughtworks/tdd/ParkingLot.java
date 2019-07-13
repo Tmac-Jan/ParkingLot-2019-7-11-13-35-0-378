@@ -10,8 +10,17 @@ import java.util.LinkedHashMap;
  * @date: 2019/7/13 10:56
  */
 public class ParkingLot {
+    private Integer capacity;
     private LinkedHashMap<Ticket, Car> ticketCars;
 
+    public ParkingLot(Integer capacity) {
+        this.capacity = capacity;
+        this.ticketCars = new LinkedHashMap<>(0);
+    }
+    public ParkingLot(){
+        this.capacity=10;
+        this.ticketCars = new LinkedHashMap<>(0);
+    }
     public LinkedHashMap<Ticket, Car> getTicketCars() {
         return ticketCars;
     }
@@ -19,12 +28,21 @@ public class ParkingLot {
     public Car fetchCar(Ticket ticket){
         return  ticketCars.remove(ticket);
     }
-    public ParkingLot(){
-        this.ticketCars = new LinkedHashMap<>(0);
+
+    public Ticket Park(Car car)throws Exception{
+        if (this.isCapacityFull()){
+            throw new Exception();
+        }else{
+            if (ticketCars.containsValue(car)){
+                throw new Exception();
+            }
+            Ticket ticket = new Ticket();
+            ticketCars.put(ticket,car);
+            return  ticket;
+        }
+
     }
-    public Ticket Park(Car car){
-        Ticket ticket = new Ticket();
-        ticketCars.put(ticket,car);
-        return  ticket;
+    public boolean isCapacityFull(){
+        return ticketCars.size()>10;
     }
 }

@@ -32,7 +32,7 @@ class ParkingBoyTest {
         Assertions.assertEquals(actualFirstCar,expectedFirstCar);
         Assertions.assertEquals(actualSecondCar,expectedSecondCar);
     }
-    @Test void should_get_exception_by_wrong_ticket()throws Exception{
+    @Test void should_get_exception_when_give_wrong_ticket()throws Exception{
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket wrongTicket = new Ticket();
@@ -41,13 +41,29 @@ class ParkingBoyTest {
             parkingBoy.fetch(wrongTicket);
         });
     }
-    @Test void should_get_exception_By_give_ticket_has_been_used()throws Exception{
+    @Test void should_get_exception_when_give_ticket_has_been_used()throws Exception{
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket actualTicket = parkingBoy.park(car);//Not Used
         parkingBoy.fetch(actualTicket);
         Assertions.assertThrows(Exception.class,()->{
             parkingBoy.fetch(actualTicket);
+        });
+    }
+    @Test void should_get_exception_when_fetch_car_and_parkingLot_capacity_is_full()throws Exception{
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Assertions.assertThrows(Exception.class,()->{
+           for (int i=0;i<=11;++i){
+               parkingBoy.park(new Car());
+           }
+        });
+    }
+    @Test void should_get_exception_when_fetch_car_has_been_parked()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.park(car);
+        Assertions.assertThrows(Exception.class,()->{
+            parkingBoy.park(car);
         });
     }
 }

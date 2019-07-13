@@ -13,12 +13,13 @@ public class ParkingBoy {
     public ParkingBoy() {
         parkingLot = new ParkingLot();
     }
-    public Ticket park(Car car){
+    public Ticket park(Car car)throws Exception{
         return (this.parkingLot.Park(car));
     }
     public Car fetch(Ticket ticket)throws Exception{
-        if (parkingLot.fetchCar(ticket)!=null){
-            return this.parkingLot.fetchCar(ticket);
+        Car car= parkingLot.fetchCar(ticket);
+        if (car!=null){
+            return car;
         }
         else throw new Exception();
     }
