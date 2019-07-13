@@ -1,7 +1,5 @@
 package com.thoughtworks.tdd;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 /**
@@ -116,5 +114,12 @@ class ParkingBoyTest {
             System.out.println(ex.getMessage());
             Assertions.assertEquals("Not enough position.",ex.getMessage());
         }
+    }
+    @Test void should_park_car_in_paringLot_contains_more_capacity_firstLy_when_park_car()throws Exception{
+        ParkingBoy parkingBoy = new SmartParkingBoy(2);
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        Assertions.assertEquals(parkingBoy.getParkingLots().get(0).getTicketCars().size()
+                ,parkingBoy.getParkingLots().get(1).getTicketCars().size());
     }
 }

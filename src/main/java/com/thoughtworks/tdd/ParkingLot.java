@@ -49,6 +49,6 @@ public class ParkingLot {
 
     }
     public boolean isCapacityFull(){
-        return ticketCars.size()>10;
+        return ticketCars.size()>this.capacity;
     }
 }

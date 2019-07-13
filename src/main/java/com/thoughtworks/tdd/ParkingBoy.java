@@ -31,7 +31,9 @@ public class ParkingBoy {
             parkingLots.add(new ParkingLot());
         }
     }
-
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
     public Ticket park(Car car) throws Exception {
         if (isAllParkingLotFull()) {
             throw new Exception("Not enough position.");
