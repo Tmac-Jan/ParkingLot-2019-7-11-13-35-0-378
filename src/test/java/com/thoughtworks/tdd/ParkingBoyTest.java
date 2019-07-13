@@ -53,7 +53,7 @@ class ParkingBoyTest {
     @Test void should_get_exception_when_fetch_car_and_parkingLot_capacity_is_full()throws Exception{
         ParkingBoy parkingBoy = new ParkingBoy();
         Assertions.assertThrows(Exception.class,()->{
-           for (int i=0;i<=11;++i){
+           while (1==1){
                parkingBoy.park(new Car());
            }
         });
