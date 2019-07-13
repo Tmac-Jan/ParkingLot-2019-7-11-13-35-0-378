@@ -14,7 +14,10 @@ public class ParkingBoy {
         parkingLot = new ParkingLot();
     }
     public Ticket park(Car car)throws Exception{
-        return this.parkingLot.Park(car);
+        if (this.parkingLot.isCapacityFull()){
+            throw new Exception("Not enough position.");
+        }
+        else return this.parkingLot.Park(car);
     }
     public Car fetch(Ticket ticket)throws Exception{
         if (ticket == null){

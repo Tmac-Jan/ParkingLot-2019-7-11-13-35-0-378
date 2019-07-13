@@ -67,7 +67,6 @@ class ParkingBoyTest {
         });
     }
     @Test void should_get_exception_when_park_car_is_null()throws Exception{
-        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         Assertions.assertThrows(Exception.class,()->{
             parkingBoy.park(null);
@@ -99,13 +98,23 @@ class ParkingBoyTest {
         }
     }
     @Test void should_get_exception_show_message_when_fetch_car_by_null_ticket()throws Exception{
-        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         try {
             parkingBoy.fetch(null);
         }catch (Exception ex){
             System.out.println(ex.getMessage());
             Assertions.assertEquals("Please provide your parking ticket.",ex.getMessage());
+        }
+    }
+    @Test void should_get_exception_show_message_when_park_car_in_parkingLot_and_capacity_is_full()throws Exception{
+        ParkingBoy parkingBoy = new ParkingBoy();
+        try {
+          while(1==1){
+              parkingBoy.park(new Car());
+          }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Not enough position.",ex.getMessage());
         }
     }
 }
