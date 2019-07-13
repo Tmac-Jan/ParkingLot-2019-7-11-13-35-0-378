@@ -164,4 +164,73 @@ class ParkingBoyTest {
         Car actualCar = parkingManager.fetch(ticket);
         Assertions.assertEquals(expectedCar,actualCar);
     }
+    @Test void should_get_exception_show_message_when_fetch_car_by_wrong_ticket_and_by_ParkingManger_specify_ParkingBoy()throws Exception{
+        Car car = new Car();
+        ParkingManager parkingManager = new ParkingManager();
+        int i=0;
+        while(i<2){
+            parkingManager.addParkBoy(new ParkingBoy());
+            i++;
+        }
+        ParkingBoy parkingBoy =parkingManager.getParkingBoyList().get(0);
+        parkingBoy.park(car);
+        Ticket wrongTicket = new Ticket();
+        try {
+            parkingBoy.fetch(wrongTicket);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Your ticket is unlawful!",ex.getMessage());
+        }
+
+    }
+    @Test void should_get_exception_show_message_when_fetch_car_by_used_ticket_and_by_ParkingManger_specify_ParkingBoy()throws Exception{
+        Car car = new Car();
+        ParkingManager parkingManager = new ParkingManager();
+        int i=0;
+        while(i<2){
+            parkingManager.addParkBoy(new ParkingBoy());
+            i++;
+        }
+        ParkingBoy parkingBoy =parkingManager.getParkingBoyList().get(0);
+        Ticket ticket =parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
+        try {
+            parkingBoy.fetch(ticket);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Your ticket is unlawful!",ex.getMessage());
+        }
+    }
+    @Test void should_get_exception_show_message_when_fetch_car_by_null_ticket_and_by_ParkingManger_specify_ParkingBoy()throws Exception{
+        ParkingManager parkingManager = new ParkingManager();
+        int i=0;
+        while(i<2){
+            parkingManager.addParkBoy(new ParkingBoy());
+            i++;
+        }
+        ParkingBoy parkingBoy =parkingManager.getParkingBoyList().get(0);
+        try {
+            parkingBoy.fetch(null);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Please provide your parking ticket.",ex.getMessage());
+        }
+    }
+    @Test void should_get_exception_show_message_when_park_car_in_parkingLot_and_capacity_is_full_and_by_ParkingManger_specify_ParkingBoy()throws Exception{
+        ParkingManager parkingManager = new ParkingManager();
+        int i=0;
+        while(i<2){
+            parkingManager.addParkBoy(new ParkingBoy());
+            i++;
+        }
+        ParkingBoy parkingBoy =parkingManager.getParkingBoyList().get(0);
+        try {
+            while(1==1){
+                parkingBoy.park(new Car());
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Not enough position.",ex.getMessage());
+        }
+    }
 }

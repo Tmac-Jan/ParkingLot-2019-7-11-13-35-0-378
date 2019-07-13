@@ -8,12 +8,12 @@ package com.thoughtworks.tdd;
  * @date: 2019/7/13 10:58
  */
 public class Ticket {
-    private  ParkingBoy parkingBoy;
-
-    public Ticket(ParkingBoy parkingBoy) {
-        this.parkingBoy = parkingBoy;
-    }
-
-    public Ticket() {
-    }
+//    private  ParkingBoy parkingBoy;
+//
+//    public Ticket(ParkingBoy parkingBoy) {
+//        this.parkingBoy = parkingBoy;
+//    }
+//
+//    public Ticket() {
+//    }
 }
