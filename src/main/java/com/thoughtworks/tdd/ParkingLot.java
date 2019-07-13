@@ -16,6 +16,9 @@ public class ParkingLot {
         return ticketCars;
     }
 
+    public Car fetchCar(Ticket ticket){
+        return  ticketCars.remove(ticket);
+    }
     public ParkingLot(){
         this.ticketCars = new LinkedHashMap<>(0);
     }

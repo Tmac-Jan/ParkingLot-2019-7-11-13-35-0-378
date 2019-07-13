@@ -16,7 +16,10 @@ public class ParkingBoy {
     public Ticket park(Car car){
         return (this.parkingLot.Park(car));
     }
-    public Car fetch(Ticket ticket){
-        return this.parkingLot.getTicketCars().get(ticket);
+    public Car fetch(Ticket ticket)throws Exception{
+        if (parkingLot.fetchCar(ticket)!=null){
+            return this.parkingLot.fetchCar(ticket);
+        }
+        else throw new Exception();
     }
 }

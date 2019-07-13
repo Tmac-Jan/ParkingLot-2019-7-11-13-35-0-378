@@ -22,14 +22,23 @@ class ParkingBoyTest {
         Assertions.assertEquals(actualCar,expectedCar);
     }
     @Test void should_return_correct_car_when_parks_cars_and_fecth_it_by_ticket()throws Exception{
-        Car firstCar = new Car();
-        Car secondCar = new Car();
+        Car actualFirstCar = new Car();
+        Car actualSecondCar = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket firstTicket = parkingBoy.park(firstCar);
-        Ticket secondTicket = parkingBoy.park(secondCar);
+        Ticket firstTicket = parkingBoy.park(actualFirstCar);
+        Ticket secondTicket = parkingBoy.park(actualSecondCar);
         Car expectedFirstCar = parkingBoy.fetch(firstTicket);
         Car expectedSecondCar = parkingBoy.fetch(secondTicket);
-        Assertions.assertEquals(firstCar,expectedFirstCar);
-        Assertions.assertEquals(secondCar,expectedSecondCar);
+        Assertions.assertEquals(actualFirstCar,expectedFirstCar);
+        Assertions.assertEquals(actualSecondCar,expectedSecondCar);
+    }
+    @Test void should_return_no_car_by_wrong_ticket()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket wrongTicket = new Ticket();
+        parkingBoy.park(car);
+        Assertions.assertThrows(Exception.class,()->{
+            parkingBoy.fetch(wrongTicket);
+        });
     }
 }
