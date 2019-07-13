@@ -32,13 +32,22 @@ class ParkingBoyTest {
         Assertions.assertEquals(actualFirstCar,expectedFirstCar);
         Assertions.assertEquals(actualSecondCar,expectedSecondCar);
     }
-    @Test void should_return_no_car_by_wrong_ticket()throws Exception{
+    @Test void should_get_exception_by_wrong_ticket()throws Exception{
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket wrongTicket = new Ticket();
         parkingBoy.park(car);
         Assertions.assertThrows(Exception.class,()->{
             parkingBoy.fetch(wrongTicket);
+        });
+    }
+    @Test void should_get_exception_By_give_ticket_has_been_used()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket actualTicket = parkingBoy.park(car);//Not Used
+        parkingBoy.fetch(actualTicket);
+        Assertions.assertThrows(Exception.class,()->{
+            parkingBoy.fetch(actualTicket);
         });
     }
 }
