@@ -98,4 +98,14 @@ class ParkingBoyTest {
             Assertions.assertEquals("Your ticket is unlawful!",ex.getMessage());
         }
     }
+    @Test void should_get_exception_show_message_when_fetch_car_by_null_ticket()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        try {
+            parkingBoy.fetch(null);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Please provide your parking ticket.",ex.getMessage());
+        }
+    }
 }

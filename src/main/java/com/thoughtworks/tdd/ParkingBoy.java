@@ -17,10 +17,14 @@ public class ParkingBoy {
         return this.parkingLot.Park(car);
     }
     public Car fetch(Ticket ticket)throws Exception{
-        Car car= parkingLot.fetchCar(ticket);
-        if (car!=null){
-            return car;
+        if (ticket == null){
+            throw new Exception("Please provide your parking ticket.");
+        }else{
+            Car car= parkingLot.fetchCar(ticket);
+            if (car!=null){
+                return car;
+            }
+            else throw new Exception();
         }
-        else throw new Exception();
     }
 }
