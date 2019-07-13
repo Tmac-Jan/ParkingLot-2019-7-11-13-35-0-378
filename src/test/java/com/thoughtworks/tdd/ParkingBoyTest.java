@@ -66,4 +66,11 @@ class ParkingBoyTest {
             parkingBoy.park(car);
         });
     }
+    @Test void should_get_exception_when_park_car_is_null()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Assertions.assertThrows(Exception.class,()->{
+            parkingBoy.park(null);
+        });
+    }
 }

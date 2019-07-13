@@ -14,7 +14,7 @@ public class ParkingBoy {
         parkingLot = new ParkingLot();
     }
     public Ticket park(Car car)throws Exception{
-        return (this.parkingLot.Park(car));
+        return this.parkingLot.Park(car);
     }
     public Car fetch(Ticket ticket)throws Exception{
         Car car= parkingLot.fetchCar(ticket);

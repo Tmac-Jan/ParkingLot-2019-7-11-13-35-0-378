@@ -30,7 +30,7 @@ public class ParkingLot {
     }
 
     public Ticket Park(Car car)throws Exception{
-        if (this.isCapacityFull()){
+        if (this.isCapacityFull()||car==null){
             throw new Exception();
         }else{
             if (ticketCars.containsValue(car)){
