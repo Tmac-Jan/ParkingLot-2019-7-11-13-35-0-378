@@ -73,4 +73,29 @@ class ParkingBoyTest {
             parkingBoy.park(null);
         });
     }
+    @Test void should_get_exception_show_message_when_fetch_car_by_wrong_ticket()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.park(car);
+        Ticket wrongTicket = new Ticket();
+            try {
+                parkingBoy.fetch(wrongTicket);
+            }catch (Exception ex){
+                System.out.println(ex.getMessage());
+                Assertions.assertEquals("Your ticket is unlawful!",ex.getMessage());
+            }
+
+    }
+    @Test void should_get_exception_show_message_when_fetch_car_by_used_ticket()throws Exception{
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket =parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
+        try {
+            parkingBoy.fetch(ticket);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            Assertions.assertEquals("Your ticket is unlawful!",ex.getMessage());
+        }
+    }
 }

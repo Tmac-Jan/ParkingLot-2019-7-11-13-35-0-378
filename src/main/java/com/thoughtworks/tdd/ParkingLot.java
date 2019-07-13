@@ -25,8 +25,14 @@ public class ParkingLot {
         return ticketCars;
     }
 
-    public Car fetchCar(Ticket ticket){
-        return  ticketCars.remove(ticket);
+    public Car fetchCar(Ticket ticket)throws Exception{
+        if (isTicketLegal(ticket)){
+            return  ticketCars.remove(ticket);
+        }
+       else throw new Exception("Your ticket is unlawful!");
+    }
+    public boolean isTicketLegal(Ticket ticket){
+        return this.ticketCars.containsKey(ticket)?true:false;
     }
 
     public Ticket Park(Car car)throws Exception{
