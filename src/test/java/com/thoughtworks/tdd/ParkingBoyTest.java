@@ -122,4 +122,13 @@ class ParkingBoyTest {
         Assertions.assertEquals(parkingBoy.getParkingLots().get(0).getTicketCars().size()
                 ,parkingBoy.getParkingLots().get(1).getTicketCars().size());
     }
+    @Test void should_park_car_in_paringLot_contains_more_capacityRate_firstLy_when_park_car()throws Exception{
+        ParkingBoy parkingBoy = new SmartParkingBoy(2);
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        parkingBoy.park(new Car());
+        Assertions.assertEquals(parkingBoy.getParkingLots().get(0).getTicketCars().size()
+                ,parkingBoy.getParkingLots().get(1).getTicketCars().size());
+    }
 }

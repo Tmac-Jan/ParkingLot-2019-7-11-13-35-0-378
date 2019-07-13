@@ -51,4 +51,8 @@ public class ParkingLot {
     public boolean isCapacityFull(){
         return ticketCars.size()>this.capacity;
     }
+
+    public double getParkingLotPositionRate(){
+        return  this.getTicketCars().size()/this.capacity;
+    }
 }

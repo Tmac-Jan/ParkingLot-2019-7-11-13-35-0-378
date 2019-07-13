@@ -4,21 +4,17 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
- * @title: SmartParkingBoy
+ * @title: SuperSmartParkingBoy
  * @projectName: ParkingLot-2019-7-11-13-35-0-378
  * @description: TODO
  * @author: macmanboy@foxmail.com(Gio Zhang)
- * @date: 2019/7/13 15:45
+ * @date: 2019/7/13 16:21
  */
-public class SmartParkingBoy extends ParkingBoy {
-    public SmartParkingBoy() {
-        super();
+public class SuperSmartParkingBoy extends SmartParkingBoy {
+    public SuperSmartParkingBoy() {
     }
 
-    public SmartParkingBoy(int parkingLotCount) {
-        super(parkingLotCount);
-    }
-    public SmartParkingBoy(int parkingLotCount,int capacity) {
+    public SuperSmartParkingBoy(int parkingLotCount,int capacity) {
         super(parkingLotCount,capacity);
     }
 
@@ -29,11 +25,9 @@ public class SmartParkingBoy extends ParkingBoy {
         } else {
             ParkingLot parkingLot = getParkingLots().stream()
                     .filter(e -> !(e.isCapacityFull()))
-                    .sorted(Comparator.comparing(e->e.getTicketCars().size()))
+                    .sorted(Comparator.comparing(e->e.getParkingLotPositionRate()))
                     .collect(Collectors.toList()).get(0);
             return parkingLot.Park(car);
         }
     }
-
-
 }

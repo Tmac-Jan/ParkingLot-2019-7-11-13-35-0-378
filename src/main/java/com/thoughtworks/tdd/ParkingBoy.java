@@ -31,6 +31,12 @@ public class ParkingBoy {
             parkingLots.add(new ParkingLot());
         }
     }
+    public ParkingBoy(int parkingLotCount,int capacity) {
+        parkingLots = new ArrayList<>(0);
+        for (int i = 0; i < parkingLotCount; i++) {
+            parkingLots.add(new ParkingLot(capacity+(i+1)*2));//simulate produces parking lots with different capacities
+        }
+    }
     public List<ParkingLot> getParkingLots() {
         return parkingLots;
     }
